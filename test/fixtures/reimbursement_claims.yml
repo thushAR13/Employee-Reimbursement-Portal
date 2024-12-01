@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee: one
+  purpose: MyString
+  amount: 1.5
+  date_of_expenditure: 2024-12-01
+
+two:
+  employee: two
+  purpose: MyString
+  amount: 1.5
+  date_of_expenditure: 2024-12-01

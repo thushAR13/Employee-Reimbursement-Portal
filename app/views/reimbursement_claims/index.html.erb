@@ -1,0 +1,33 @@
+<div class="container mt-5">
+<h1>Reimbursement Claims for <%= @employee.name %></h1>
+<%= link_to 'Add Claim', new_company_employee_reimbursement_claim_path(@company, @employee), class: 'btn btn-primary mb-3' %>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Purpose</th>
+      <th>Amount</th>
+      <th>Date of Expenditure</th>
+      <th>Receipt</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @claims.each do |claim| %>
+      <tr>
+        <td><%= claim.purpose %></td>
+        <td><%= number_to_currency(claim.amount) %></td>
+        <td><%= claim.date_of_expenditure %></td>
+        <td>
+          <% if claim.receipt.attached? %>
+            <%= link_to 'View Receipt', rails_blob_path(claim.receipt, disposition: 'attachment'), target: '_blank' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_company_employee_reimbursement_claim_path(@company, @employee, claim), class: 'btn btn-warning' %>
+          <%= link_to 'Delete', company_employee_reimbursement_claim_path(@company, @employee, claim), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

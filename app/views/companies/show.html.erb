@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <h1>Company: <%= @company.name %></h1>
+  <h3>Employees</h3>
+  <% if @employees.any? %>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employees.each do |employee| %>
+          <tr>
+            <td><%= employee.name %></td>
+            <td><%= employee.email %></td>
+            <td>
+              <%= link_to 'Edit', edit_company_employee_path(@company, employee), class: 'btn btn-warning' %>
+              <%= link_to 'Delete', company_employee_path(@company, employee), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No employees found for this company.</p>
+  <% end %>
+
+  <%= link_to 'Add Employee', new_company_employee_path(@company), class: 'btn btn-primary mt-3' %>
+</div>
